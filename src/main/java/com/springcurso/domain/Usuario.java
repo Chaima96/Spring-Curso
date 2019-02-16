@@ -12,7 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import org.hibernate.annotations.Columns;
 
 import com.springcurso.domain.enums.Role;
 
@@ -21,12 +20,24 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/*ANOTACAOES DA BIBLIOTECA LOMBOK PARA GERECAO DE METODOS GETTERS E SETTERS E SEUS RESPECTIVOS CONSTRUTORES
+ * TENDO UMA CLASSE MAIS PERCEPTIVEL E COM MENOS LINHAS DE CODIGO
+ */
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter 
 @Setter
+
+//ANOTACAO DA ENTIDADE USUARIO QUE SERA MAPEADA NO BANCO DE DADOS POR INTERMEDIO DO JPA
 @Entity(name = "usuario")
 public class Usuario {
+	
+	/* ANOTACOES DOS ATRIBUTOS DA CLASSE USUARIO QUE SERAO 
+	 * QUE SERAO AS RESPECTIVAS COLUNAS DA ENTIDADE USUARIO NO 
+	 * BANCO DE DADOS
+	 * 
+	 */
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

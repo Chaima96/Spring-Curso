@@ -3,8 +3,6 @@ package com.springcurso;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.springcurso.domain.Usuario;
-
 
 @SpringBootApplication
 public class SpringCursoApplication {

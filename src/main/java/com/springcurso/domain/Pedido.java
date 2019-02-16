@@ -17,6 +17,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.springcurso.domain.enums.EstadosdoPedido;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -44,7 +46,7 @@ public class Pedido {
 	
 	@Column(length = 12, nullable = false )
 	@Enumerated(EnumType.STRING)
-	private Estado_Pedido estado;
+	private EstadosdoPedido estado;
 	
 	@ManyToOne
 	@JoinColumn(name = "usuario_id", nullable = false)
