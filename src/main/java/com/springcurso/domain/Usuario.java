@@ -1,5 +1,6 @@
 package com.springcurso.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +32,7 @@ import lombok.Setter;
 
 //ANOTACAO DA ENTIDADE USUARIO QUE SERA MAPEADA NO BANCO DE DADOS POR INTERMEDIO DO JPA
 @Entity(name = "usuario")
-public class Usuario {
+public class Usuario implements Serializable {
 	
 	/* ANOTACOES DOS ATRIBUTOS DA CLASSE USUARIO QUE SERAO 
 	 * QUE SERAO AS RESPECTIVAS COLUNAS DA ENTIDADE USUARIO NO 
@@ -39,6 +40,12 @@ public class Usuario {
 	 * 
 	 */
 	
+	
+	/*Variavel de control que serve para verificar o objecto qwue iremos receber
+	 * a sua versao e compsativel com avercao da class usada durante a serializacao
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
