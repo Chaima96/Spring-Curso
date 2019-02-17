@@ -12,7 +12,7 @@ import com.springcurso.domain.Pedido;
 @Repository
 public interface RepositoriodoPedido extends JpaRepository<Pedido, Long> {
 	
-	public List<Pedido> findAllUsuarioId(Long id);
+	public List<Pedido> findAllByUsuarioId(Long id);
 	
 	@Query("UPDATE pedido SET estado = ?2 WHERE id = ?1")
 	public Pedido ActualizarEstado(Long id, Estado_Pedido estado);
