@@ -15,7 +15,7 @@ public interface RepositorioUsuario extends JpaRepository<Usuario, Long> {
 	/*OPTINAL E UM TIPO DE DADO QUE NOS PERMITE TRATAR DA 
 	 * MELHOR MANEIRA VALORES NULOS
 	 */
-	@Query("SELECT FROM Usuario WHERE email = ?1 AND password = ?2")
+	@Query("SELECT u FROM usuario u WHERE email = ?1 AND password = ?2")
 	public Optional<Usuario> login(String email, String password);
 
 }
