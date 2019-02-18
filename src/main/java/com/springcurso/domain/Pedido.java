@@ -46,7 +46,7 @@ public class Pedido implements Serializable {
 	@Column(columnDefinition = "text" )
 	private String descricao;
 	
-	@Column(name = "criacao_data", nullable = false)
+	@Column(name = "criacao_data", nullable = false, updatable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date criacaoData;
 	
