@@ -5,6 +5,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.springcurso.domain.enums.EstadosdoPedido;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -37,12 +41,16 @@ public class Estado_Pedido implements Serializable {
 	@Column(columnDefinition = "text" )
 	private String descricao;
 	
-	@Column(name = "data_realizacao", nullable = false)
+	@Column(name = "data_realizacao", nullable = false, updatable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date datadeRealizacao;
 	
+	@Column(length = 12, nullable = false )
+	@Enumerated(EnumType.STRING)
+	private EstadosdoPedido estado_pedido;
+	
 	@ManyToOne
-	@JoinColumn(name = "estado_id", nullable = false)
+	@JoinColumn(name = "pedido_id", nullable = false)
 	private Pedido pedido;
 	
 	@ManyToOne
