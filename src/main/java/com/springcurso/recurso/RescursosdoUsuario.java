@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.springcurso.DTO.UsuarioLoginDTO;
+import com.springcurso.domain.Pedido;
 import com.springcurso.domain.Usuario;
 
+import Servicos.ServicoPedido;
 import Servicos.ServicoUsuario;
 
 @RestController
@@ -23,6 +25,7 @@ import Servicos.ServicoUsuario;
 public class RescursosdoUsuario {
 	
 	@Autowired private ServicoUsuario servicodousuario;
+	@Autowired private ServicoPedido servicoPedido;
 	
 	@PostMapping
 	public ResponseEntity<Usuario> Salvar(@RequestBody Usuario usuario){
@@ -41,7 +44,7 @@ public class RescursosdoUsuario {
 		
 	}
 	
-	@GetMapping("/id")
+	@GetMapping("/{id}")
 	public ResponseEntity<Usuario> ObterById(@PathVariable(name = "id") Long id){
 		
 		Usuario usuario = servicodousuario.getById(id);
@@ -60,6 +63,14 @@ public class RescursosdoUsuario {
 		
 		Usuario usuarioAutenticado = servicodousuario.login(usuario.getEmail(), usuario.getPassword());
 		return ResponseEntity.ok(usuarioAutenticado);
+	}
+	
+	@GetMapping("/{id}/pedidos")
+	public ResponseEntity<List<Pedido>> listAllPedidoById(@PathVariable(name = "id") Long id){
+		
+		List<Pedido> pedidos = servicoPedido.listarTodosByUsuarioId(id);
+		return ResponseEntity.ok(pedidos);
+		
 	}
 
 }
