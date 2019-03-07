@@ -1,4 +1,4 @@
-package Servicos;
+package com.springcurso.Servico;
 
 import java.util.List;
 import java.util.Optional;
@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.springcurso.domain.Usuario;
+import com.springcurso.exception.NotFoundException;
 import com.springcurso.repositorio.RepositorioUsuario;
 
 import Servicos.util.HashUtil;
@@ -39,8 +40,9 @@ public class ServicoUsuario {
 	public Usuario getById(Long id) {
 		
 		Optional<Usuario> result = repositoriousuario.findById(id);
-		 
-		return result.get();
+		
+		// ()-> new NotFoundException() Funcao 
+		return result.orElseThrow(()-> new NotFoundException("Nao existe usuario com esse ID " + id));
 		
 	}
 

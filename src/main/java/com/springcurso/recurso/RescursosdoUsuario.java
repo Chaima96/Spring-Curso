@@ -14,11 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.springcurso.DTO.UsuarioLoginDTO;
+import com.springcurso.Servico.ServicoPedido;
+import com.springcurso.Servico.ServicoUsuario;
 import com.springcurso.domain.Pedido;
 import com.springcurso.domain.Usuario;
-
-import Servicos.ServicoPedido;
-import Servicos.ServicoUsuario;
 
 @RestController
 @RequestMapping(value = "usuarios")

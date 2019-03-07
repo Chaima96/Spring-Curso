@@ -12,11 +12,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.springcurso.Servico.ServicoEstadoPedido;
+import com.springcurso.Servico.ServicoPedido;
 import com.springcurso.domain.Estado_Pedido;
 import com.springcurso.domain.Pedido;
-
-import Servicos.ServicoEstadoPedido;
-import Servicos.ServicoPedido;
 
 @RestController
 @RequestMapping(value = "pedidos")
@@ -24,6 +23,7 @@ public class RecusodoPediso {
 	
 	@Autowired private ServicoPedido servicoPedido;
 	@Autowired private ServicoEstadoPedido servicoEstadoPedido;
+	
 	
 	@PostMapping
 	public ResponseEntity<Pedido> salvar(@RequestBody Pedido pedido){
@@ -55,13 +55,15 @@ public class RecusodoPediso {
 		return ResponseEntity.ok(pedidos);
 	}
 	
-	@GetMapping("/{id}/estado-pedido")
+	
+	@GetMapping("/{id}/estado")
 	public ResponseEntity<List<Estado_Pedido>> listAllEstadosById(@PathVariable(name = "id") Long id){
 		
 		List<Estado_Pedido> estados = servicoEstadoPedido.listarTodosByPedidoId(id);
 		return ResponseEntity.ok(estados);
 		
 	}
+	
 	
 	
 }

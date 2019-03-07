@@ -1,4 +1,4 @@
-package Servicos;
+package com.springcurso.Servico;
 
 import java.util.Date;
 import java.util.List;

@@ -1,4 +1,4 @@
-package Servicos;
+ package com.springcurso.Servico;
 
 import java.util.Date;
 import java.util.List;
@@ -16,7 +16,7 @@ import com.springcurso.repositorio.RepositoriodoPedido;
 public class ServicoEstadoPedido {
 	
 	@Autowired private EstadosPedidoRepositorio estadosPedidoRepositorio;
-	@Autowired private RepositoriodoPedido repositoriodopedido;
+	@Autowired private RepositoriodoPedido repodopedido;
 	
 	public Estado_Pedido salvar(Estado_Pedido estadopedido) {
 		
@@ -26,7 +26,7 @@ public class ServicoEstadoPedido {
 		 Long pedidoId = estadopedido.getPedido().getId();
 		 EstadosdoPedido estado = estadopedido.getEstado_pedido();
 		 
-		 repositoriodopedido.ActualizarEstado(pedidoId, estado);
+		 repodopedido.ActualizarEstado(pedidoId, estado);
 		 
 		 return criadoEstado;
 	}

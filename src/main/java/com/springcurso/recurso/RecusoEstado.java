@@ -1,6 +1,6 @@
 package com.springcurso.recurso;
 
-import javax.xml.ws.Response;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,21 +12,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.springcurso.Servico.ServicoEstadoPedido;
 import com.springcurso.domain.Estado_Pedido;
 
-import Servicos.ServicoEstadoPedido;
-
 @RestController
-@RequestMapping(value = "estado-pedido")
-public class RecursoEstadoPedido {
+@RequestMapping(value = "estado")
+public class RecusoEstado {
 	
 	
-	@Autowired private ServicoEstadoPedido servicoEstadoPedido;
+	@Autowired private ServicoEstadoPedido serviEPedido;
 	
 	@PostMapping 
 	public ResponseEntity<Estado_Pedido> Salvar(@RequestBody Estado_Pedido estado_pedido){
 		
-		Estado_Pedido estadoCriado = servicoEstadoPedido.salvar(estado_pedido);
+		Estado_Pedido estadoCriado = serviEPedido.salvar(estado_pedido);
 		return ResponseEntity.status(HttpStatus.CREATED).body(estadoCriado);
 		
 	}
@@ -34,7 +33,7 @@ public class RecursoEstadoPedido {
 	@GetMapping("/{id}")
 	public ResponseEntity<Estado_Pedido> getById(@PathVariable(name =  "id") Long id){
 		
-		Estado_Pedido estado = servicoEstadoPedido.getById(id);
+		Estado_Pedido estado = serviEPedido.getById(id);
 		return ResponseEntity.ok(estado);
 	}
 	
