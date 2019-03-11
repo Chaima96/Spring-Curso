@@ -21,6 +21,7 @@ import com.springcurso.domain.Usuario;
 import com.springcurso.model.PageModel;
 import com.springcurso.model.PageRequestModel;
 
+
 @RestController
 @RequestMapping(value = "usuarios")
 public class RescursosdoUsuario {
@@ -61,7 +62,9 @@ public class RescursosdoUsuario {
 	}
 	*/
 	@GetMapping
-	public ResponseEntity<PageModel<Usuario>> listAll(@RequestParam(value = "pagina") int pagina, @RequestParam(value = "tamanho") int tamanho){
+	public ResponseEntity<PageModel<Usuario>> listAll(
+			@RequestParam(value = "pagina", defaultValue = "0")  int pagina, 
+			@RequestParam(value = "tamanho", defaultValue = "10") int tamanho){
 		
 		PageRequestModel pr = new PageRequestModel(pagina, tamanho);
 		PageModel<Usuario> pm = servicodousuario.listAllOnLazzMode(pr);
@@ -87,7 +90,8 @@ public class RescursosdoUsuario {
 	
 	@GetMapping("/{id}/pedidos")
 	public ResponseEntity<PageModel<Pedido>> listAllPedidoById(@PathVariable(name = "id") Long id, 
-			@RequestParam(value = "pagina") int pagina, @RequestParam(value = "tamanho") int tamanho){
+			@RequestParam(value = "pagina", defaultValue = "0") int pagina, 
+			@RequestParam(value = "tamanho", defaultValue = "10") int tamanho){
 		
 		PageRequestModel pr = new PageRequestModel(pagina, tamanho);
 		PageModel<Pedido> pm = servicoPedido.listAllByUsuarioIdOnLazzModel(id, pr);

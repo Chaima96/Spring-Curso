@@ -1,6 +1,5 @@
 package com.springcurso.recurso;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -64,7 +63,9 @@ public class RecusodoPediso {
 	*/
 	
 	@GetMapping
-	public ResponseEntity<PageModel<Pedido>> listAll(@RequestParam(value = "pagina") int pagina, @RequestParam(value = "tamanho") int tamanho){
+	public ResponseEntity<PageModel<Pedido>> listAll(
+			@RequestParam(value = "pagina", defaultValue = "0") int pagina,
+			@RequestParam(value = "tamanho", defaultValue = "10") int tamanho){
 		
 		PageRequestModel pr = new PageRequestModel(pagina, tamanho);
 		PageModel<Pedido> pm = servicoPedido.listAllOnLazzMode(pr);
@@ -82,8 +83,10 @@ public class RecusodoPediso {
 	*/
 	
 	@GetMapping("/{id}/estado")
-	public ResponseEntity<PageModel<Estado_Pedido>> listAllEstadosById(@PathVariable(name = "id") Long id,
-			@RequestParam(value = "pagina") int pagina, @RequestParam(value = "tamanho") int tamanho){
+	public ResponseEntity<PageModel<Estado_Pedido>> listAllEstadosById(
+			@PathVariable(name = "id") Long id,
+			@RequestParam(value = "pagina", defaultValue = "0") int pagina, 
+			@RequestParam(value = "tamanho", defaultValue = "10") int tamanho){
 		
 		PageRequestModel pr = new PageRequestModel(pagina, tamanho);
 		PageModel<Estado_Pedido> pm = servicoEstadoPedido.listAllByEstado_PedidoIdOnLazzModel(id, pr);
