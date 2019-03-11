@@ -1,13 +1,19 @@
 package com.springcurso.Servico;
 
+
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.springcurso.domain.Usuario;
 import com.springcurso.exception.NotFoundException;
+import com.springcurso.model.PageModel;
+import com.springcurso.model.PageRequestModel;
 import com.springcurso.repositorio.RepositorioUsuario;
 
 import Servicos.util.HashUtil;
@@ -41,7 +47,7 @@ public class ServicoUsuario {
 		
 		Optional<Usuario> result = repositoriousuario.findById(id);
 		
-		// ()-> new NotFoundException() Funcao 
+		// ()-> new NotFoundException() Funcao row funtion
 		return result.orElseThrow(()-> new NotFoundException("Nao existe usuario com esse ID " + id));
 		
 	}
@@ -52,6 +58,17 @@ public class ServicoUsuario {
 		List<Usuario> lista = repositoriousuario.findAll();
 		return  lista;
 	}
+	
+	public PageModel<Usuario> listAllOnLazzMode(PageRequestModel pr){
+		
+		Pageable pageable = PageRequest.of(pr.getPage(), pr.getSize());
+		
+		Page<Usuario> page = repositoriousuario.findAll(pageable);
+		
+		PageModel<Usuario> pm = new PageModel<>((int)page.getTotalElements(), page.getSize(), page.getTotalPages(), page.getContent());
+		
+		return pm;
+		}
 
 	public Usuario login(String email, String password) {
 		

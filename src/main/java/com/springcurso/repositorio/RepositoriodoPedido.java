@@ -2,8 +2,8 @@ package com.springcurso.repositorio;
 
 import java.util.List;
 
-
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -19,6 +19,8 @@ public interface RepositoriodoPedido extends JpaRepository<Pedido, Long> {
 	
 	public List<Pedido> findAllByUsuarioId(Long id);
 	
+	public Page<Pedido> findAllByUsuarioId(Long id, Pageable pageable);
+	
 	@Transactional(readOnly = false)
 	@Modifying
 	@Query("UPDATE pedido SET estado = ?2 WHERE id = ?1")
@@ -26,3 +28,4 @@ public interface RepositoriodoPedido extends JpaRepository<Pedido, Long> {
 
 
 }
+ 
