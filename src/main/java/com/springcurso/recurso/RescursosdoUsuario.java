@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.springcurso.DTO.UsuarioLoginDTO;
+import com.springcurso.DTO.UsuarioUpdateRoleDTO;
 import com.springcurso.Servico.ServicoPedido;
 import com.springcurso.Servico.ServicoUsuario;
 import com.springcurso.domain.Pedido;
@@ -96,6 +98,19 @@ public class RescursosdoUsuario {
 		PageRequestModel pr = new PageRequestModel(pagina, tamanho);
 		PageModel<Pedido> pm = servicoPedido.listAllByUsuarioIdOnLazzModel(id, pr);
 		return ResponseEntity.ok(pm);
+		
+	}
+	
+	@PatchMapping("/role/{id}")
+	public ResponseEntity<?> updateRole(@PathVariable(name = "id") Long id, @RequestBody UsuarioUpdateRoleDTO usuario){
+		
+		Usuario user = new Usuario();
+		user.setId(id);
+		user.setRole(usuario.getRole());
+		
+		servicodousuario.UpdateRole(user);
+		
+		return ResponseEntity.ok().build();
 		
 	}
 	

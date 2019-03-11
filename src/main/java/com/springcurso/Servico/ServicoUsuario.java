@@ -77,6 +77,11 @@ public class ServicoUsuario {
 		Optional<Usuario> usuario = repositoriousuario.login(email, password);
 		return usuario.get();
 	}
+	
+	public int UpdateRole(Usuario usuario) {
+		
+		return repositoriousuario.UpdateRole(usuario.getId(), usuario.getRole());
+	}
 
 
 }

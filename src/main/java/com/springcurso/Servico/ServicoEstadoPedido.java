@@ -11,7 +11,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.springcurso.domain.Estado_Pedido;
-import com.springcurso.domain.Pedido;
 import com.springcurso.domain.enums.EstadosdoPedido;
 import com.springcurso.model.PageModel;
 import com.springcurso.model.PageRequestModel;
